@@ -9,19 +9,19 @@ function CatForm ({onSubmit}) {
     const [edad,setEdad] = useState('');
 
     const handlenombreChange = (event) => {
-        setNombre(event.target.value)
+        setNombre(event.target.value);
     }
 
     const handlepropietarioChange = (event) => {
-        setPropietario(event.target.value)
+        setPropietario(event.target.value);
     }
 
     const handlecolorChange = (event) => {
-        setColor(event.target.value)
+        setColor(event.target.value);
     }
 
     const handleedadChange = (event) => {
-        setEdad(event.target.value)
+        setEdad(event.target.value);
     }
 
     const handleSubmit = (event) => {
@@ -31,8 +31,8 @@ function CatForm ({onSubmit}) {
         setPropietario('')
         setColor('')
         setEdad('')
-
     }
+    
     // caja de texto para ingresar datos de la mascota
     return (
         <form onSubmit={handleSubmit}>

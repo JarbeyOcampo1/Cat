@@ -8,6 +8,7 @@ const CatRow = ({cat, onEdit, onDelete}) => {
     const handleDelete = () =>{
         onDelete(cat.catID);
     }
+    
     // Se crea una fila con los datos de la mascota y dos botones para editar y eliminar
     return(
         <tr>
