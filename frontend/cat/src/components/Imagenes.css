@@ -4,7 +4,10 @@
     margin-top: 10px;
 }
 
-.button-one {
-    margin-top: 20px;
-    
+input[type="file"] {
+    font-size: 17px;
+    padding: 12px;
+    border: 1px solid #888;
+    background-color: #eaeaea;
+    cursor: pointer;
 }

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function CatForm ({onSubmit}) {
+function CatForm ({onSubmit, initialCat}) {
 
     // Se crean los estados para los datos de la mascota
     const [nombre,setNombre] = useState('');
@@ -8,39 +8,45 @@ function CatForm ({onSubmit}) {
     const [color,setColor] = useState('');
     const [edad,setEdad] = useState('');
 
-    const handlenombreChange = (event) => {
-        setNombre(event.target.value);
-    }
-
-    const handlepropietarioChange = (event) => {
-        setPropietario(event.target.value);
-    }
-
-    const handlecolorChange = (event) => {
-        setColor(event.target.value);
-    }
-
-    const handleedadChange = (event) => {
-        setEdad(event.target.value);
-    }
+    useEffect(() => {
+        if (initialCat) {
+            setNombre(initialCat.nombre);
+            setPropietario(initialCat.propietario);
+            setColor(initialCat.color);
+            setEdad(initialCat.edad);
+        };
+    },[initialCat]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSubmit({nombre,propietario,color,edad})
-        setNombre('')
-        setPropietario('')
-        setColor('')
-        setEdad('')
-    }
+        const restData = {nombre,propietario,color,edad};
+        onSubmit(restData);
+        setNombre('');
+        setPropietario('');
+        setColor('');
+        setEdad('');
+    };
     
     // caja de texto para ingresar datos de la mascota
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Nombre de la mascota" value={nombre} onChange={handlenombreChange} required/>
-            <input type="text" placeholder="Nombre del propietario" value={propietario} onChange={handlepropietarioChange} required/>
-            <input type="text" placeholder="Color de la mascota" value={color} onChange={handlecolorChange} required/>
-            <input type="number"  placeholder="Edad de la mascota" value={edad} onChange={handleedadChange} required/>
-            <button type="submit"> Agregar Mascota </button>
+        <form onSubmit={handleSubmit} className="container mt-4 p-4 border rounded shadow-sm bg-light">
+            <div className="mb-3">
+                <label htmlFor="nombre" className="form-label">  Nombre de la mascota </label>
+                <input type="text" className="form-control" placeholder="Nombre de la mascota" value={nombre} onChange={(e) => setNombre(e.target.value)} required/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="propietario" className="form-label"> Propietario </label>
+                <input type="text" className="form-control" placeholder="Nombre del propietario" value={propietario} onChange={(e) => setPropietario(e.target.value)} required/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="color" className="form-label"> Color </label>
+                <input type="text" className="form-control" placeholder="Color de la mascota" value={color} onChange={(e) => setColor(e.target.value)} required/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="edad" className="form-label"> Edad </label>
+                <input type="number"  className="form-control" placeholder="Edad de la mascota" value={edad} onChange={(e) => setEdad(e.target.value)} required/>
+            </div>
+            <button type="submit" className="btn btn-primary w-100">{initialCat ? 'Actualizar' : 'Agregar'}</button>
         </form>
     );
 }

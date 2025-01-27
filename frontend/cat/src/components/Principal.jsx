@@ -4,6 +4,7 @@ import CatForm from './CatForm'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Principal.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Principal() {
 
@@ -50,13 +51,13 @@ function Principal() {
 
   //retorna la lista de gatos y el formulario para crear o editar un gato
   return (
-    <div className='App'>
+    <div>
       <div>
-        <Link className="button" to="/Imagenes"> Imagenes </Link>
+      <Link className="btn btn-primary" to="/Imagenes"> Agregar Imagenes </Link>
       </div>
+      <br/>
         <h1> Gatos y propietarios </h1>
         <br/>
-        <h2> Lista de gatos </h2>
         <CatTable cats={cats} onEdit={handleEditCat} onDelete={handleDelete}/>
         <h3>{editingCat ? 'Editar gatos' : 'Crear gato'}</h3>
         <CatForm onSubmit={CreateOrUpdate} initialCat={editingCat}/>

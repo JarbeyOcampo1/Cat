@@ -48,21 +48,28 @@ function Imagenes() {
     return (
         <div>
             <div>
-                <Link className="principal-home " to="/"> Principal </Link>
+                <Link className="btn btn-primary"  to="/"> Pagina Principal </Link>
             </div>
-            <h2> Subir imágenes </h2>
-            <input type="file" accept="image/*" onChange={handleImageChange} multiple />
-            <br />
-
+            <br/>
+            <div>
+                <h2> Imágenes </h2>
+            </div>
+            <br/>
+            <div>
+                <h4> Subir imágenes </h4>
+                <input type="file"  accept="image/*" onChange={handleImageChange} multiple />
+            </div>
+            <br/>
             {loading.length > 0 && (
                 <div>
-                    <h3> Vista Previa: </h3>
+                    <br/>
+                    <h4> Vista Previa: </h4>
                     {loading.map((src, index) => (
                         <div key={index}>
                             <img className="img-one" src={src} alt={`Vista previa ${index + 1}`} />
+                            <br/>
                             <br />
-                            <button className="button-one" onClick={() => handleDeleteImage(index)}>
-                                Borrar imagen {index + 1} </button>
+                            <button className="btn btn-danger" onClick={() => handleDeleteImage(index)}> Borrar imagen {index + 1} </button>
                         </div>
                     ))}
                 </div>
